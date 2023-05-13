@@ -161,19 +161,19 @@
               <div class="col-md-12">
                   <div class="form-group">
                       <label for="" class="control-label">Nama Pengeluaran</label>
-                      <input type="text" class="form-control" name="nama_pengeluaran">
+                      <input type="text" class="form-control" name="nama_pengeluaran" required>
                   </div>
               </div>
               <div class="col-md-12">
                   <div class="form-group">
                       <label for="" class="control-label">Nominal Pengeluaran</label>
-                      <input type="number" class="form-control" name="nominal_pengeluaran">
+                      <input type="number" class="form-control" name="nominal_pengeluaran" required>
                   </div>
               </div>
               <div class="col-md-12">
                   <div class="form-group">
                       <label for="" class="control-label">Bukti Pengeluaran</label>
-                      <input type="file" class="form-control" name="bukti_pengeluaran">
+                      <input type="file" class="form-control" name="bukti_pengeluaran" required>
                   </div>
               </div>
           </div>

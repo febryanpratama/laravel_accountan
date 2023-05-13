@@ -44,7 +44,7 @@ class AdminController extends Controller
     {
         // dd($request->all());
         if ($request['tanggal_mulai'] && $request['tanggal_selesai']) {
-            $data = Pemasukan::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->get();
+            $data = Pemasukan::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->orderByDESC('tipe_pemasukan')->get();
 
             // dd($data);
             $hari_ini = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
@@ -65,7 +65,7 @@ class AdminController extends Controller
             ]);
         }
 
-        $data = Pemasukan::whereDate('created_at', Carbon::now())->get();
+        $data = Pemasukan::whereDate('created_at', Carbon::now())->orderByDESC('tipe_pemasukan')->get();
 
         $hari_ini = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
         $minggu_ini = Pemasukan::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('nominal_pemasukan');
