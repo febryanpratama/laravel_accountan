@@ -5,17 +5,17 @@
                                     <h5>Beginner</h5>
                                     <img src="assets/img/instructor-profile-bg.jpg" alt="">
                                     <div class="profile-img">
-                                        <a href="instructor-profile.html"><img src="assets/img/user/user15.jpg"
+                                        <a href="{{ url('dashboard') }}"><img src="assets/img/user/user15.jpg"
                                                 alt=""></a>
                                     </div>
                                 </div>
                                 <div class="profile-group">
                                     <div class="profile-name text-center">
-                                        <h4><a href="instructor-profile.html">Jenny Wilson</a></h4>
-                                        <p>Instructor</p>
+                                        <h4><a href="{{ url('dashboard') }}">Admin</a></h4>
+                                        <p>Admin</p>
                                     </div>
                                     <div class="go-dashboard text-center">
-                                        <a href="add-course.html" class="btn btn-primary">Create New Course</a>
+                                        <a href="{{ url('dashboard') }}" class="btn btn-primary">Create New Course</a>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                 <h3>DASHBOARD</h3>
                                 <ul>
                                     <li class="nav-item ">
-                                        <a class="active" href="instructor-dashboard.html" class="nav-link">
+                                        <a class="active" href="{{ url('dashboard') }}" class="nav-link">
                                             <i class="feather-home"></i> My Dashboard
                                         </a>
                                     </li>
