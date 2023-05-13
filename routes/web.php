@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect('/login');
+});
 
 Route::group([
     'prefix' => '/',
     'controller' => AdminController::class,
     'middleware' => ['auth', 'verified']
 ], function () {
-    Route::get('/', function () {
-        redirect('/login');
-    });
     Route::get('/dashboard', 'indexDashboard');
 
     Route::prefix('pemasukan')->group(function () {
