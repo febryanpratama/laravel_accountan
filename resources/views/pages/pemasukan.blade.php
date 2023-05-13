@@ -136,7 +136,7 @@
                                                             
                                                     @endswitch
                                                 </td>
-                                                <td>{{ $key->nama_pemasukan == null ? "Main Ps" : $key->nama_pemasukan }}</td>
+                                                <td>{{ $key->nama_pemasukan == null ? "Main ".@$key->tipe_ps : $key->nama_pemasukan }}</td>
                                                 <td>{{ number_format($key->nominal_pemasukan) }}</td>
                                                 <td>aksi</td>
                                             </tr>
@@ -177,6 +177,16 @@
                 </div>
             </div>
             <div class="row hide" id="ps">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="" class="control-label">Tipe PS</label>
+                        <select name="tipe_ps" class="form-control" id="">
+                            <option value="" selected disabled> == Pilih == </option>
+                            <option value="PS 3">PS 3</option>
+                            <option value="PS 4">PS 4</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="" class="control-label">Jam Mulai</label>

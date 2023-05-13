@@ -90,6 +90,7 @@ class AdminController extends Controller
         if ($request['tipe_pemasukan'] == 'Playstation') {
             Pemasukan::create([
                 'tipe_pemasukan' => $request['tipe_pemasukan'],
+                'tipe_ps' => $request['tipe_ps'],
                 'jam_mulai' => $request['jam_mulai'],
                 'jam_selesai' => $request['jam_selesai'],
                 'nominal_pemasukan' => $request['nominal']
