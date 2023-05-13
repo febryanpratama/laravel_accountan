@@ -138,7 +138,9 @@
                                                 </td>
                                                 <td>{{ $key->nama_pemasukan == null ? "Main ".@$key->tipe_ps : $key->nama_pemasukan }}</td>
                                                 <td>{{ number_format($key->nominal_pemasukan) }}</td>
-                                                <td>aksi</td>
+                                                <td>
+                                                    <a href="{{ url('pemasukan/hapus/'.$key->id) }}" class="text-danger">Hapus</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

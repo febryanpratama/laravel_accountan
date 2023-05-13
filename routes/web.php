@@ -29,11 +29,14 @@ Route::group([
     Route::prefix('pemasukan')->group(function () {
         Route::get('/', 'indexPemasukan');
         Route::post('/', 'storePemasukan');
+
+        Route::get('/hapus/{pemasukan_id}', 'hapusPemasukan');
     });
 
     Route::prefix('pengeluaran')->group(function () {
         Route::get('/', 'indexpengeluaran');
         Route::post('/', 'storepengeluaran');
+        Route::get('/hapus/{pengeluaran_id}', 'hapusPengeluaran');
     });
 });
 

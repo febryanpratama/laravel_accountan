@@ -128,7 +128,9 @@
                                                 <td>{{ number_format($key->nominal_pengeluaran) }}</td>
                                                 <td><a href="{{ asset('images/pengeluaran/'.$key->bukti_pengeluaran) }}" target="_blank">Lihat</a></td>
                                                 <td>{{ \Carbon\Carbon::parse($key->created_at)->format('d M Y') }}</td>
-                                                <td>aksi</td>
+                                                <td>
+                                                    <a href="{{ url('pengeluaran/hapus/'.$key->id) }}" class="text-danger">Hapus</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

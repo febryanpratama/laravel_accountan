@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('') }}assets/plugins/dropzone/dropzone.min.css">
 
     <link rel="stylesheet" href="{{ asset('') }}assets/plugins/aos/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="{{ asset('') }}assets/css/style.css">
 
@@ -105,7 +107,33 @@
     <script src="{{ asset('') }}assets/plugins/aos/aos.js"></script>
 
     <script src="{{ asset('') }}assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+        <script>
+        $(document).ready(function() {
+        // $('#example').DataTable();
+
+        @if (session('success'))
+        Swal.fire(
+            'Great !',
+            '{{ session("success") }}',
+            'success'
+        )
+        // swal("Great !", "{{ session('success') }}", "success");
+        @endif ()
+        
+        @if (session('errors'))
+        Swal.fire(
+            'Oh No !',
+            '{{ session("errors") }}',
+            'error'
+        )
+        // swal("Oh No !", "{{ session('errors') }}", "errors");
+        @endif ()
+
+        });
+    </script>
     @yield('script')
 </body>
 

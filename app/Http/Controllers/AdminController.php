@@ -105,6 +105,15 @@ class AdminController extends Controller
 
         return back()->withSuccess('Berhasil Menambahkan Pemasukan ' . $request['tipe_pemasukan']);
     }
+
+    public function hapusPemasukan($pemasukan_id)
+    {
+        $pemasukan = Pemasukan::find($pemasukan_id);
+        $pemasukan->delete();
+
+        return back()->withSuccess('Berhasil Menghapus Pemasukan');
+    }
+
     public function indexPengeluaran(Request $request)
     {
 
@@ -163,5 +172,13 @@ class AdminController extends Controller
         ]);
 
         return back()->withSuccess('Berhasil Menambahkan Data Pengeluaran');
+    }
+
+    public function hapusPengeluaran($pengeluaran_id)
+    {
+        $pengeluaran = Pengeluaran::find($pengeluaran_id);
+        $pengeluaran->delete();
+
+        return back()->withSuccess('Berhasil Menghapus Pengeluaran');
     }
 }
