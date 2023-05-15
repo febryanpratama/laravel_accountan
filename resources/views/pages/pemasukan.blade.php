@@ -182,7 +182,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="control-label">Tipe PS</label>
-                        <select name="tipe_ps" class="form-control" id="">
+                        <select name="tipe_ps" class="form-control" id="tipeps">
                             <option value="" selected disabled> == Pilih == </option>
                             <option value="PS 3">PS 3</option>
                             <option value="PS 4">PS 4</option>
@@ -192,19 +192,25 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="" class="control-label">Jam Mulai</label>
-                        <input type="time" class="form-control" name="jam_mulai">
+                        <input type="time" class="form-control" name="jam_mulai" id="jam_mulai">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="" class="control-label">Jam Selesai</label>
-                        <input type="time" class="form-control" name="jam_selesai">
+                        <input type="time" class="form-control" name="jam_selesai" id="jam_selesai">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="control-label">Durasi Total</label>
+                        <input type="text" class="form-control"  id="durasi">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="control-label">Nominal Pemasukan</label>
-                        <input type="number" class="form-control" name="nominal">
+                        <input type="number" class="form-control" name="nominal" id="nominal">
                     </div>
                 </div>
             </div>
@@ -240,6 +246,10 @@
     $(document).ready(function(){
         $('#tipe').on('change', function(){
             let val = $('#tipe').val();
+            $('#jam_mulai').val('')
+            $('#jam_selesai').val('')
+            $('#durasi').val('')
+            $('#nominal').val('')
 
             if(val == 'Playstation'){
                 $('#ps').removeClass('hide')
@@ -250,6 +260,79 @@
             }
             // console.log(val)
         })
+
+        $('#tipeps').on('change', function(){
+            $('#jam_mulai').val('')
+            $('#jam_selesai').val('')
+            $('#durasi').val('')
+            $('#nominal').val('')
+            let ps = $('#tipeps :selected').val();
+
+            console.log(ps)
+
+            $('#jam_mulai').on('change', function(){
+    
+                let jam_mulai = $(this).val();
+    
+                $('#jam_selesai').on('change', function(){
+                    let jam_selesai = $(this).val();
+                    var startTime = new Date('2012/10/09 '+jam_mulai); 
+                    var endTime = new Date('2012/10/09 '+jam_selesai);
+                    var difference = endTime.getTime() - startTime.getTime(); // This will give difference in milliseconds
+                    var resultInMinutes = Math.round(difference / 60000);
+    
+                    // console.log(resultInMinutes)
+    
+                    let hours = Math.floor(resultInMinutes / 60);
+                    let minutes = resultInMinutes % 60;
+                    let diffMinutes = Math.floor(minutes / 10);
+                    
+                    $('#durasi').val(hours+' Jam '+minutes+' Menit')
+    
+                        if(ps == 'PS 3'){
+                            let amountHours = 5000;
+                            let amountMinutes = 1000;
+        
+                            let totalHours = hours * amountHours;
+                            let totalMinutes = diffMinutes * amountMinutes;
+        
+                            if(minutes >= 40){
+                                $('#nominal').val(totalHours+5000)
+                            }else{
+                                $('#nominal').val(totalHours+totalMinutes)
+                            }
+                            
+                        }else{
+                            // console.log("perhitungan ps 4")
+                            let amountHours = 9000;
+                            let amountMinutes = 2000;
+        
+                            let totalHours = hours * amountHours;
+                            let totalMinutes = diffMinutes * amountMinutes;
+        
+                            if(minutes >= 40){
+                                $('#nominal').val(totalHours+9000)
+                            }else{
+                                $('#nominal').val(totalHours+totalMinutes)
+                            }
+        
+        
+                        }
+                })
+                
+                // console.log(jam_mulai)
+            })
+
+        })
+        // $('#nominal').on('change', function(){
+        //     let ps = $('#tipeps').val();
+            
+        //     if(ps == 'PS 3'){
+
+        //     }else{
+
+        //     }
+        // });
     })
 </script>
 @endsection
