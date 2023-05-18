@@ -42,7 +42,7 @@
                 <div class="card-body">
                     <div class="instructor-inner">
                         <h6>Pengeluaran Minggu Ini</h6>
-                        <h4 class="instructor-text-warning">{{ number_format($pengeluaran_minggu_ini) }}</h4>
+                        <h4 class="instructor-text-warning" style="color:red">{{ number_format($pengeluaran_minggu_ini) }}</h4>
                         <p>New this month</p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="card-body">
                     <div class="instructor-inner">
                         <h6>Pengeluaran Bulan Ini</h6>
-                        <h4 class="instructor-text-warning">{{ number_format($pengeluaran_bulan_ini) }}</h4>
+                        <h4 class="instructor-text-warning" style="color:red">{{ number_format($pengeluaran_bulan_ini) }}</h4>
                         <p>Rating this month</p>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             <div class="card instructor-card w-100">
                 <div class="card-body">
                     <div class="instructor-inner">
-                        <h6>Total Pemasukan</h6>
+                        <h6>Pemasukan Keseluruhan</h6>
                         <h4 class="instructor-text-primary">{{ number_format($pemasukan) }}</h4>
                         <p>Rating this month</p>
                     </div>
@@ -75,7 +75,7 @@
             <div class="card instructor-card w-100">
                 <div class="card-body">
                     <div class="instructor-inner">
-                        <h6>Total Pengeluaran</h6>
+                        <h6>Pengeluaran Keseluruhan</h6>
                         <h4 class="instructor-text-primary">{{ number_format($pengeluaran) }}</h4>
                         <p>Rating this month</p>
                     </div>
