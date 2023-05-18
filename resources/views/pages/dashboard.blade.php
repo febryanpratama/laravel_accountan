@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-xl-9 col-lg-8 col-md-12">
     <div class="row">
-        <div class="col-md-4 d-flex">
+        {{-- <div class="col-md-4 d-flex">
             <div class="card instructor-card w-100">
                 <div class="card-body">
                     <div class="instructor-inner">
@@ -13,14 +13,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-4 d-flex">
             <div class="card instructor-card w-100">
                 <div class="card-body">
                     <div class="instructor-inner">
                         <h6>Pemasukan Minggu Ini</h6>
                         <h4 class="instructor-text-success">{{ number_format($pemasukan_minggu_ini) }}</h4>
-                        <p>New this month</p>
+                        <p>New this Week</p>
                     </div>
                 </div>
             </div>
@@ -36,28 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 d-flex">
-            <div class="card instructor-card w-100">
-                <div class="card-body">
-                    <div class="instructor-inner">
-                        <h6>Pemasukan Tahun Ini</h6>
-                        <h4 class="instructor-text-success">{{ number_format($pemasukan_tahun_ini) }}</h4>
-                        <p>Rating this month</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex">
-            <div class="card instructor-card w-100">
-                <div class="card-body">
-                    <div class="instructor-inner">
-                        <h6>Pengeluaran Hari Ini</h6>
-                        <h4 class="instructor-text-warning">{{ number_format($pengeluaran_hari_ini) }}</h4>
-                        <p>Earning this month</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="col-md-4 d-flex">
             <div class="card instructor-card w-100">
                 <div class="card-body">
@@ -80,17 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 d-flex">
-            <div class="card instructor-card w-100">
-                <div class="card-body">
-                    <div class="instructor-inner">
-                        <h6>Pengeluaran Tahun Ini</h6>
-                        <h4 class="instructor-text-warning">{{ number_format($pengeluaran_tahun_ini) }}</h4>
-                        <p>Rating this month</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-md-4 d-flex">
             <div class="card instructor-card w-100">
                 <div class="card-body">

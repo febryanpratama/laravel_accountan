@@ -19,8 +19,8 @@
                             <div class="card-body">
                                 <div class="instructor-inner">
                                     <h6>Pengeluaran Hari Ini</h6>
-                                    <h4 class="instructor-text-success">{{ number_format($hari_ini) }}</h4>
-                                    <p>Earning this month</p>
+                                    <h4 class="instructor-text-success" style="color: red">{{ number_format($hari_ini) }}</h4>
+                                    <p>Earning this day</p>
                                 </div>
                             </div>
                         </div>
@@ -29,9 +29,20 @@
                         <div class="card instructor-card w-100">
                             <div class="card-body">
                                 <div class="instructor-inner">
+                                    <h6>Pemasukan Hari Ini</h6>
+                                    <h4 class="instructor-text-info">{{ number_format($pemasukan) }}</h4>
+                                    <p>Earning this day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-4 col-sm-12 d-flex">
+                        <div class="card instructor-card w-100">
+                            <div class="card-body">
+                                <div class="instructor-inner">
                                     <h6>Pengeluaran Minggu Ini</h6>
                                     <h4 class="instructor-text-success">{{ number_format($minggu_ini) }}</h4>
-                                    <p>Earning this month</p>
+                                    <p>Earning this week</p>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +57,17 @@
                                 </div>
                             </div>
                         </div>
+                    </div> --}}
+                    <div class="col-md-4 col-sm-12 d-flex">
+                        <div class="card instructor-card w-100">
+                            <div class="card-body">
+                                <div class="instructor-inner">
+                                    <h6>Laba Bersih Hari Ini</h6>
+                                    <h4 class="instructor-text-success">{{ number_format($pemasukan-$hari_ini) }}</h4>
+                                    <p>Earning this month</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     @if ($total_pengeluaran)
                         <div class="col-md-4 col-sm-12 d-flex">
@@ -53,6 +75,17 @@
                                 <div class="card-body">
                                     <div class="instructor-inner">
                                         <h6>Total Pendapatan Terpilih </h6>
+                                        <h4 class="instructor-text-success">{{ number_format($total_pengeluaran) }}</h4>
+                                        <p>Earning this month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 d-flex">
+                            <div class="card instructor-card w-100">
+                                <div class="card-body">
+                                    <div class="instructor-inner">
+                                        <h6>Total Pendapatan - Pengeluaran </h6>
                                         <h4 class="instructor-text-success">{{ number_format($total_pengeluaran) }}</h4>
                                         <p>Earning this month</p>
                                     </div>
@@ -115,7 +148,7 @@
                                             <th>Nomor</th>
                                             <th>Nama Pengeluaran</th>
                                             <th>Nominal Pengeluaran</th>
-                                            <th>Bukti Pengeluaran</th>
+                                            {{-- <th>Bukti Pengeluaran</th> --}}
                                             <th>Tanggal Pengeluaran</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -126,7 +159,7 @@
                                                 <td>{{ $item+1 }}</td>
                                                 <td>{{ $key->nama_pengeluaran }}</td>
                                                 <td>{{ number_format($key->nominal_pengeluaran) }}</td>
-                                                <td><a href="{{ asset('images/pengeluaran/'.$key->bukti_pengeluaran) }}" target="_blank">Lihat</a></td>
+                                                {{-- <td><a href="{{ asset('images/pengeluaran/'.$key->bukti_pengeluaran) }}" target="_blank">Lihat</a></td> --}}
                                                 <td>{{ \Carbon\Carbon::parse($key->created_at)->format('d M Y') }}</td>
                                                 <td>
                                                     <a href="{{ url('pengeluaran/hapus/'.$key->id) }}" class="text-danger">Hapus</a>
@@ -170,12 +203,12 @@
                       <input type="number" class="form-control" name="nominal_pengeluaran" required>
                   </div>
               </div>
-              <div class="col-md-12">
+              {{-- <div class="col-md-12">
                   <div class="form-group">
                       <label for="" class="control-label">Bukti Pengeluaran</label>
                       <input type="file" class="form-control" name="bukti_pengeluaran" required>
                   </div>
-              </div>
+              </div> --}}
           </div>
         </div>
         <div class="modal-footer">

@@ -14,45 +14,78 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 d-flex">
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
                         <div class="card instructor-card w-100">
                             <div class="card-body">
                                 <div class="instructor-inner">
-                                    <h6>Pendapatan Hari Ini</h6>
-                                    <h4 class="instructor-text-success">{{ number_format($hari_ini) }}</h4>
-                                    <p>Earning this month</p>
+                                    <h6>Pemasukan PS 3</h6>
+                                    <h4 class="instructor-text-info">{{ number_format($ps3) }}</h4>
+                                    <p>Earning this day</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 d-flex">
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
                         <div class="card instructor-card w-100">
                             <div class="card-body">
                                 <div class="instructor-inner">
-                                    <h6>Pendapatan Minggu Ini</h6>
-                                    <h4 class="instructor-text-success">{{ number_format($minggu_ini) }}</h4>
-                                    <p>Earning this month</p>
+                                    <h6>Pemasukan PS 4</h6>
+                                    <h4 class="instructor-text-danger" style="color: red">{{ number_format($ps4) }}</h4>
+                                    <p>Earning this day</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 d-flex">
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
                         <div class="card instructor-card w-100">
                             <div class="card-body">
                                 <div class="instructor-inner">
-                                    <h6>Pendapatan Bulan Ini</h6>
-                                    <h4 class="instructor-text-success">{{ number_format($bulan_ini) }}</h4>
-                                    <p>Earning this month</p>
+                                    <h6>Pemasukan Makanan</h6>
+                                    <h4 class="instructor-text-success">{{ number_format($makanan) }}</h4>
+                                    <p>Earning this day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
+                        <div class="card instructor-card w-100">
+                            <div class="card-body">
+                                <div class="instructor-inner">
+                                    <h6>Pemasukan Hari Ini</h6>
+                                    <h4 class="instructor-text-info">{{ number_format($hari_ini) }}</h4>
+                                    <p>Earning this day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
+                        <div class="card instructor-card w-100">
+                            <div class="card-body">
+                                <div class="instructor-inner">
+                                    <h6>Pengeluaran Hari Ini</h6>
+                                    <h4 class="instructor-text-danger" style="color: red">{{ number_format($pengeluaran) }}</h4>
+                                    <p>Earning this day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 justify-content-center d-flex">
+                        <div class="card instructor-card w-100">
+                            <div class="card-body">
+                                <div class="instructor-inner">
+                                    <h6>Laba Bersih Hari Ini</h6>
+                                    <h4 class="instructor-text-success">{{ number_format($hari_ini-$pengeluaran) }}</h4>
+                                    <p>Earning this day</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @if ($total_pemasukan != 0)
-                        <div class="col-md-4 col-sm-12 d-flex">
+                        <div class="col-md-4 col-sm-12 justify-content-center d-flex">
                             <div class="card instructor-card w-100">
                                 <div class="card-body">
                                     <div class="instructor-inner">
-                                        <h6>Total Pendapatan Terpilih </h6>
+                                        <h6>Total Pemasukan Terpilih </h6>
                                         <h4 class="instructor-text-success">{{ number_format($total_pemasukan) }}</h4>
                                         <p>Earning this month</p>
                                     </div>
@@ -136,7 +169,7 @@
                                                             
                                                     @endswitch
                                                 </td>
-                                                <td>{{ $key->nama_pemasukan == null ? "Main ".@$key->tipe_ps : $key->nama_pemasukan }}</td>
+                                                <td>{{ $key->nama_pemasukan == null ? "Main ".@$key->tipe_ps ." | " .$key->jam_mulai." - ".$key->jam_selesai : $key->nama_pemasukan }}</td>
                                                 <td>{{ number_format($key->nominal_pemasukan) }}</td>
                                                 <td>
                                                     <a href="{{ url('pemasukan/hapus/'.$key->id) }}" class="text-danger">Hapus</a>
@@ -204,7 +237,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="" class="control-label">Durasi Total</label>
-                        <input type="text" class="form-control"  id="durasi">
+                        <input type="text" class="form-control"  id="durasi" readonly>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -266,6 +299,7 @@
             $('#jam_selesai').val('')
             $('#durasi').val('')
             $('#nominal').val('')
+
             let ps = $('#tipeps :selected').val();
 
             console.log(ps)

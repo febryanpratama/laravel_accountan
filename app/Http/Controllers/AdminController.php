@@ -68,17 +68,21 @@ class AdminController extends Controller
         $data = Pemasukan::whereDate('created_at', Carbon::now())->orderByDESC('tipe_pemasukan')->get();
 
         $hari_ini = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
-        $minggu_ini = Pemasukan::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('nominal_pemasukan');
-        $bulan_ini = Pemasukan::whereMonth('created_at', Carbon::now()->month)->sum('nominal_pemasukan');
-        $tahun_ini = Pemasukan::whereYear('created_at', Carbon::now()->year)->sum('nominal_pemasukan');
+        $ps3 = Pemasukan::where('tipe_ps', 'PS 3')->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
+        $ps4 = Pemasukan::where('tipe_ps', 'PS 4')->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
+        $makanan = Pemasukan::where('tipe_pemasukan', null)->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
+
+        $pengeluaran_hari_ini = Pengeluaran::whereDate('created_at', Carbon::now())->sum('nominal_pengeluaran');
+
 
         // dd($minggu_ini);
         return view('pages.pemasukan', [
             'hari_ini' => $hari_ini,
-            'minggu_ini' => $minggu_ini,
-            'bulan_ini' => $bulan_ini,
-            'tahun_ini' => $tahun_ini,
             'total_pemasukan' => 0,
+            'pengeluaran' => $pengeluaran_hari_ini,
+            'ps3' => $ps3,
+            'ps4' => $ps4,
+            'makanan' => $makanan,
             'data' => $data
         ]);
     }
@@ -145,11 +149,15 @@ class AdminController extends Controller
         $bulan_ini = Pengeluaran::whereMonth('created_at', Carbon::now()->month)->sum('nominal_pengeluaran');
         $tahun_ini = Pengeluaran::whereYear('created_at', Carbon::now()->year)->sum('nominal_pengeluaran');
 
+        $pemasukan = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
+
+
         return view('pages.pengeluaran', [
             'hari_ini' => $hari_ini,
             'minggu_ini' => $minggu_ini,
             'bulan_ini' => $bulan_ini,
             'tahun_ini' => $tahun_ini,
+            'pemasukan' => $pemasukan,
             'total_pengeluaran' => 0,
             'data' => $data
         ]);
@@ -168,7 +176,7 @@ class AdminController extends Controller
         $data = Pengeluaran::create([
             'nama_pengeluaran' => $request['nama_pengeluaran'],
             'nominal_pengeluaran' => $request['nominal_pengeluaran'],
-            'bukti_pengeluaran' => $fotoName
+            'bukti_pengeluaran' => 'default.png'
         ]);
 
         return back()->withSuccess('Berhasil Menambahkan Data Pengeluaran');
