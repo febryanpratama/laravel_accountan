@@ -46,21 +46,23 @@ class AdminController extends Controller
         if ($request['tanggal_mulai'] && $request['tanggal_selesai']) {
             $data = Pemasukan::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->orderByDESC('tipe_pemasukan')->get();
 
-            // dd($data);
-            $hari_ini = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
-            $minggu_ini = Pemasukan::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('nominal_pemasukan');
-            $bulan_ini = Pemasukan::whereMonth('created_at', Carbon::now()->month)->sum('nominal_pemasukan');
-            $tahun_ini = Pemasukan::whereYear('created_at', Carbon::now()->year)->sum('nominal_pemasukan');
 
-            $total_pemasukan = Pemasukan::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pemasukan');
+            $hari_ini = Pemasukan::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pemasukan');
+            $ps3 = Pemasukan::where('tipe_ps', 'PS 3')->whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pemasukan');
+            $ps4 = Pemasukan::where('tipe_ps', 'PS 4')->whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pemasukan');
+            $makanan = Pemasukan::where('tipe_ps', null)->whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pemasukan');
+
+            $pengeluaran_hari_ini = Pengeluaran::whereBetween('created_at', [$request['tanggal_mulai'] . " 00:00:00", $request['tanggal_selesai'] . " 23:59:59"])->sum('nominal_pengeluaran');
+
 
             // dd($minggu_ini);
             return view('pages.pemasukan', [
                 'hari_ini' => $hari_ini,
-                'minggu_ini' => $minggu_ini,
-                'bulan_ini' => $bulan_ini,
-                'tahun_ini' => $tahun_ini,
-                'total_pemasukan' => $total_pemasukan,
+                'total_pemasukan' => 0,
+                'pengeluaran' => $pengeluaran_hari_ini,
+                'ps3' => $ps3,
+                'ps4' => $ps4,
+                'makanan' => $makanan,
                 'data' => $data
             ]);
         }
@@ -70,7 +72,7 @@ class AdminController extends Controller
         $hari_ini = Pemasukan::whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
         $ps3 = Pemasukan::where('tipe_ps', 'PS 3')->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
         $ps4 = Pemasukan::where('tipe_ps', 'PS 4')->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
-        $makanan = Pemasukan::where('tipe_pemasukan', null)->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
+        $makanan = Pemasukan::where('tipe_ps', null)->whereDate('created_at', Carbon::now())->sum('nominal_pemasukan');
 
         $pengeluaran_hari_ini = Pengeluaran::whereDate('created_at', Carbon::now())->sum('nominal_pengeluaran');
 
